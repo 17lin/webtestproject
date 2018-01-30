@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>testpage</title>
-<meta http-equiv="refresh" content="1">
+
 <script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 <script>
 var config = {
@@ -34,7 +34,7 @@ function loadData(){
 	  InfoText.push(childData);
 	  });
 	console.log(InfoText[0]);
-	if (InfoText[0] != false){
+	if (InfoText[0] != 0){
 		Info.innerHTML = "Not Yet ~";
 	}else{
 		Info.innerHTML = "Go Go Go !!"
@@ -42,6 +42,9 @@ function loadData(){
 	
 	});        
 }
+//初始化
 loadData();
+//定期更新
+setInterval(loadData,1);
 </script>
 </html>
