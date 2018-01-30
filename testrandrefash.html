@@ -4,44 +4,16 @@
 <meta charset="utf-8">
 <title>testpage</title>
 <meta http-equiv="refresh" content="1">
-<script src="https://www.gstatic.com/firebasejs/4.8.1/firebase.js"></script>
 <script>
-var config = {
-    apiKey: "AIzaSyAVxPHfvjg4jByXSmfR3xmnMZqsJlMVS6Y",
-    authDomain: "test-79da3.firebaseapp.com",
-    databaseURL: "https://test-79da3.firebaseio.com",
-    projectId: "test-79da3",
-    storageBucket: "test-79da3.appspot.com",
-    messagingSenderId: "999832269452"
-  };
-  firebase.initializeApp(config);  
+function onloadwords(){
+				var rand = Math.round(Math.random()*(100-1)+0);
+				document.getElementById("test").innerHTML = rand;
+			}
 </script>
 </head>
 
-<body>
-<h1 id="Info"></h1>
+<body onload = "onloadwords();">
+<h1 id = "test">start</h1>
 </body>
-<script> 
-var Info = document.getElementById("Info");
-var InfoText  = [];
-function loadData(){
-    InfoText = [];
-	//資料讀取一次後就不再理會	
-	firebase.database().ref('onoffproject').once('value').then(function(snapshot) {
-	snapshot.forEach(function(childSnapshot) {
-      // childData will be the actual contents of the child
-      var childData = childSnapshot.val();
-	  InfoText.push(childData);
-	  });
-	console.log(InfoText[0]);
-	if (InfoText[0] != false){
-		Info.innerHTML = "Not Yet ~";
-	}else{
-		Info.innerHTML = "Go Go Go !!"
-	}
-	
-	});        
-}
-loadData();
-</script>
+
 </html>
