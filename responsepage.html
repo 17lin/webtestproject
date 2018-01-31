@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="utf-8">
+<title>ResponsePage</title>
+
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB9hV5z5FWLl2pjT17nGBux8KCoCy1_pAU",
+    authDomain: "messagesendbox.firebaseapp.com",
+    databaseURL: "https://messagesendbox.firebaseio.com",
+    projectId: "messagesendbox",
+    storageBucket: "messagesendbox.appspot.com",
+    messagingSenderId: "530617881989"
+  };
+  firebase.initializeApp(config);
+</script>
+</head>
+
+<body>
+<h2>watch at channel:
+<a href =  '#' onclick = 'locknumber(0)'><span id = w1>1</span></a>
+<a href =  '#' onclick = 'locknumber(1)'><span id = w2>2</span></a>
+<a href =  '#' onclick = 'locknumber(2)'><span id = w3>3</span></a>
+<a href =  '#' onclick = 'locknumber(3)'><span id = w4>4</span></a>
+<a href =  '#' onclick = 'locknumber(4)'><span id = w5>5</span></a>
+<a href =  '#' onclick = 'locknumber(5)'><span id = w6>6</span></a>
+</h2>
+<h1 id="Info"></h1>
+</body>
+<script> 
+var Info = document.getElementById("Info");
+var InfoText  = [];
+var lnum = 0;
+
+function locknumber(num){
+    lnum = num;
+}
+
+function loadData(){
+    InfoText = [];
+	//資料讀取一次後就不再理會	
+	firebase.database().ref('onoffproject').once('value').then(function(snapshot) {
+	snapshot.forEach(function(childSnapshot) {
+      // childData will be the actual contents of the child
+      var childData = childSnapshot.val();
+	  InfoText.push(childData);
+	  });
+	console.log(InfoText[lnum]);
+	if (InfoText[lnum] != 0){
+		Info.innerHTML = "(*´艸`*) Not Yet ~ (*´艸`*)";
+	}else{
+		Info.innerHTML = "(／・ω・)／ Go Go Go !! (／・ω・)／"
+	}
+	
+	});        
+}
+//初始化
+loadData();
+//定期更新
+setInterval(loadData,1);
+</script>
+</html>

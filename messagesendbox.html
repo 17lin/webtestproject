@@ -1,0 +1,155 @@
+<head>
+<meta charset="utf-8">
+<title>SmartSend</title>
+<script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB9hV5z5FWLl2pjT17nGBux8KCoCy1_pAU",
+    authDomain: "messagesendbox.firebaseapp.com",
+    databaseURL: "https://messagesendbox.firebaseio.com",
+    projectId: "messagesendbox",
+    storageBucket: "messagesendbox.appspot.com",
+    messagingSenderId: "530617881989"
+  };
+  firebase.initializeApp(config);
+</script>
+</head>
+<body>
+<p><span>account:</span><input id="accountL" type="text"><span>password:</span><input id="pwdL" type="password"><button type="submit" id="loginSmtBtn">Login</button><button id="signoutSmtBtn">Signout</button></p>
+
+<p><span>Status:</span><span id="Info">Data</span></p>
+
+<p>修改資料</p>
+<button id="ChangeInfoCase1Btn">case1</button>
+<button id="ChangeInfoCase2Btn">case2</button>
+<button id="ChangeInfoCase3Btn">case3</button>
+<button id="ChangeInfoCase4Btn">case4</button>
+<button id="ChangeInfoCase5Btn">case5</button>
+<button id="ChangeInfoCase6Btn">case6</button>
+<script> 
+//登入
+var accountL = document.getElementById("accountL");
+var pwdL = document.getElementById("pwdL");
+var loginSmtBtn = document.getElementById("loginSmtBtn");
+loginSmtBtn.addEventListener("click",function(){
+	console.log(accountL.value);
+	firebase.auth().signInWithEmailAndPassword(accountL.value, pwdL.value).catch(function(error) {
+  	// Handle Errors here.
+  	var errorCode = error.code;
+  	var errorMessage = error.message;
+  	console.log(errorMessage);
+  })
+},false);
+
+//登出
+var signoutSmtBtn = document.getElementById("signoutSmtBtn");
+signoutSmtBtn.addEventListener("click",function(){
+	firebase.auth().signOut().then(function() {
+		console.log("User sign out!");
+	}, function(error) {
+  	console.log("User sign out error!");
+	})
+},false);
+
+//查看目前登入狀況
+var user;
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+  	user = user;
+    console.log("User is logined", user)
+  } else {
+  	user = null;
+    console.log("User is not logined yet.");
+  }
+});
+
+function promptUserForPassword(){
+	var pwd = prompt("Please enter your password");
+    if (pwd != null) {
+    	return pwd;
+    }
+}
+
+var InfoBtn = document.getElementById("InfoBtn");
+var Info = document.getElementById("Info");
+var InfoText  = [];
+function showStatus(){
+    InfoText = [];
+	//資料讀取一次後就不再理會	
+	firebase.database().ref('onoffproject').once('value').then(function(snapshot) {
+	snapshot.forEach(function(childSnapshot) {
+      // childData will be the actual contents of the child
+      var childData = childSnapshot.val();
+	  InfoText.push(childData);
+	  });
+	console.log(InfoText);
+	Info.innerHTML = InfoText;
+	});        
+}
+
+var ChangeInfoCase1Btn = document.getElementById("ChangeInfoCase1Btn");
+ChangeInfoCase1Btn.addEventListener("click",function(){	
+	var postRef = firebase.database().ref('/onoffproject/case1' );
+	if (InfoText[0] == 0){
+		postRef.set(1) ;
+	}else{
+		postRef.set(0) ;
+	}	
+	showStatus();
+	},false); 
+var ChangeInfoCase2Btn = document.getElementById("ChangeInfoCase2Btn");
+ChangeInfoCase2Btn.addEventListener("click",function(){	
+	var postRef = firebase.database().ref('/onoffproject/case2' );
+	if (InfoText[1] == 0){
+		postRef.set(1) ;
+	}else{
+		postRef.set(0) ;
+	}	
+	showStatus();
+	},false); 
+var ChangeInfoCase3Btn = document.getElementById("ChangeInfoCase3Btn");
+ChangeInfoCase3Btn.addEventListener("click",function(){	
+	var postRef = firebase.database().ref('/onoffproject/case3' );
+	if (InfoText[2] == 0){
+		postRef.set(1) ;
+	}else{
+		postRef.set(0) ;
+	}	
+	showStatus();
+	},false); 
+var ChangeInfoCase4Btn = document.getElementById("ChangeInfoCase4Btn");
+ChangeInfoCase4Btn.addEventListener("click",function(){	
+	var postRef = firebase.database().ref('/onoffproject/case4' );
+	if (InfoText[3] == 0){
+		postRef.set(1) ;
+	}else{
+		postRef.set(0) ;
+	}	
+	showStatus();
+	},false); 
+var ChangeInfoCase5Btn = document.getElementById("ChangeInfoCase5Btn");
+ChangeInfoCase5Btn.addEventListener("click",function(){	
+	var postRef = firebase.database().ref('/onoffproject/case5' );
+	if (InfoText[4] == 0){
+		postRef.set(1) ;
+	}else{
+		postRef.set(0) ;
+	}	
+	showStatus();
+	},false); 
+var ChangeInfoCase6Btn = document.getElementById("ChangeInfoCase6Btn");
+ChangeInfoCase6Btn.addEventListener("click",function(){	
+	var postRef = firebase.database().ref('/onoffproject/case6' );
+	if (InfoText[5] == 0){
+		postRef.set(1) ;
+	}else{
+		postRef.set(0) ;
+	}	
+	showStatus();
+	},false); 
+	
+	//初始化
+	showStatus();
+</script>
+</body>
