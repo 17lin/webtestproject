@@ -33,25 +33,14 @@
 				user = null;
 				console.log("User is not logined yet.");
 			}
-		});	
-		var cevent = [];
-		function getEvents(){
-			firebase.database().ref('calendar').once('value').then(function(snapshot) {
-				snapshot.forEach(function(childSnapshot) {
-				var childData = childSnapshot.val();
-				cevent.push(childData);
-				});	
-			});
-		}
-		getEvents();
+		});		
 	</script>
 </head>
 <body>
 	<div id="example"></div>
-	<footer style="text-align: center;">資通科十七(MIT授權)</footer>
+	<footer style="text-align: center;" id ="test">資通科十七(MIT授權)</footer>
 	<script>				
 		var TodayString =moment().format('YYYY-MM-DD');
-		console.log(cevent);
 		var configure = {
 			header: { // 頂部排版
 				left: "prev,next today", // 左邊放置上一頁、下一頁和今天
@@ -62,9 +51,18 @@
 			weekends: true, // 顯示星期六跟星期日
 			editable: false,  // 啟動拖曳調整日期
 			handleWindowResize:true,
-			events:cevent
+			events: []
 		};
 		$( "#example" ).fullCalendar(configure);
+		var cevents = [];
+		firebase.database().ref('calendar').once('value').then(function(snapshot) {
+				snapshot.forEach(function(childSnapshot) {
+				var childData = childSnapshot.val();
+				cevents.push(childData);
+				var e = {events:[childData], textColor: 'black'};
+				$( "#example" ).fullCalendar('addEventSource',e);
+				});	
+		});	
 	</script>
 </body>
 </html>
