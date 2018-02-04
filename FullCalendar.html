@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-	<title>JS Bin</title>
+	<title>Calendar</title>
 	<!-- jQuery v1.9.1 -->
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<!-- Moment.js v2.20.0 -->
@@ -15,6 +15,7 @@
 </head>
 <body>
 	<div id="example"></div>
+	<footer style="text-align: center;">資通科十七(MIT授權)</footer>
 	<script>
 		$( "#example" ).fullCalendar({
 			header: { // 頂部排版
@@ -23,7 +24,7 @@
 				right: "month,basicWeek,basicDay" // 右邊放置月、周、天
 			},
 			defaultDate: "2018-02-12", // 起始日期
-			weekends: false, // 顯示星期六跟星期日
+			weekends: true, // 顯示星期六跟星期日
 			editable: true,  // 啟動拖曳調整日期
 			events: [ // 事件
 				{ // 事件
