@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width">
+	<title>JS Bin</title>
+	<!-- jQuery v1.9.1 -->
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<!-- DataTables v1.10.16 -->
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+	<script type="text/javascript" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+</head>
+<body>
+	<table class="example">
+		<thead>
+			<tr>
+				<td>Name</td>
+				<td>Age</td>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Tom</td>
+				<td>25</td>
+			</tr>
+			<tr>
+				<td>Mike</td>
+				<td>30</td>
+			</tr>
+		</tbody>
+		</table>
+	<script type="text/javascript">
+		$( ".example" ).DataTable();
+	</script>
+</body>
+</html>
