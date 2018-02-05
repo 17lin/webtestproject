@@ -27,7 +27,7 @@
 	<span>Status:</span><span id="Info">Data</span>
 	</div>
 	<div style = "float:Right;">
-		<span>帳號:</span><input id="accountL" type="text"><span>密碼:</span><input id="pwdL" type="password"><button type="submit" id="loginSmtBtn" class="btn btn-sm btn-danger">Login</button><button id="signoutSmtBtn" class="btn btn-sm btn-danger">Signout</button>
+		<span>帳號:</span><input id="accountL" type="text"><span>密碼:</span><input id="pwdL" type="password"><button type="submit" id="loginSmtBtn" class="btn btn-sm btn-danger">Login</button><button id="signoutSmtBtn" class="btn btn-sm btn-danger" style="visibility:hidden">Signout</button>
 	</div>
 	</div>
 </nav>
@@ -52,21 +52,31 @@ var pwdL = document.getElementById("pwdL");
 var loginSmtBtn = document.getElementById("loginSmtBtn");
 loginSmtBtn.addEventListener("click",function(){
 	console.log(accountL.value);
+	var signoutSmtBtn = document.getElementById("signoutSmtBtn");
+	signoutSmtBtn.style.visibility='visible';
+	loginSmtBtn.style.visibility='hidden';
 	firebase.auth().signInWithEmailAndPassword(accountL.value, pwdL.value).catch(function(error) {
   	// Handle Errors here.
   	var errorCode = error.code;
   	var errorMessage = error.message;
   	console.log(errorMessage);
+	signoutSmtBtn.style.visibility='hidden';
+	loginSmtBtn.style.visibility='visible';
   })
 },false);
 
 //登出
 var signoutSmtBtn = document.getElementById("signoutSmtBtn");
 signoutSmtBtn.addEventListener("click",function(){
+	var loginSmtBtn = document.getElementById("loginSmtBtn");
 	firebase.auth().signOut().then(function() {
 		console.log("User sign out!");
+		signoutSmtBtn.style.visibility='hidden';
+		loginSmtBtn.style.visibility='visible';
 	}, function(error) {
   	console.log("User sign out error!");
+	signoutSmtBtn.style.visibility='visible';
+	loginSmtBtn.style.visibility='hidden';
 	})
 },false);
 
