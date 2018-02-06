@@ -26,8 +26,8 @@
 	<div style = "float:Left;">
 	<span>Status:</span><span id="Info">Data</span>
 	</div>
-	<div style = "float:Right;" class="row">
-		<div>帳號:<input id="accountL" type="text">密碼:<input id="pwdL" type="password"></div><div style = "float:Right;"><button type="submit" id="loginSmtBtn" class="btn btn-sm btn-danger">Login</button><button id="signoutSmtBtn" class="btn btn-sm btn-danger" style="visibility:hidden">Signout</button></div>
+	<div style = "float:Right;">
+		帳號:<input id="accountL" type="text">密碼:<input id="pwdL" type="password"><button type="submit" id="loginSmtBtn" class="btn btn-sm btn-danger">Login</button>
 	</div>
 	</div>
 </nav>
@@ -50,35 +50,41 @@
 var accountL = document.getElementById("accountL");
 var pwdL = document.getElementById("pwdL");
 var loginSmtBtn = document.getElementById("loginSmtBtn");
+var logstate = false;
+
 loginSmtBtn.addEventListener("click",function(){
+	if (logstate == false){	
+		userlogin();
+	}else{
+		userlogout()
+	}
+},false);
+
+function userlogin(){
 	console.log(accountL.value);
-	var signoutSmtBtn = document.getElementById("signoutSmtBtn");
-	signoutSmtBtn.style.visibility='visible';
-	loginSmtBtn.style.visibility='hidden';
+	loginSmtBtn.innerHTML="logout";
+	logstate = true;
 	firebase.auth().signInWithEmailAndPassword(accountL.value, pwdL.value).catch(function(error) {
   	// Handle Errors here.
   	var errorCode = error.code;
   	var errorMessage = error.message;
   	console.log(errorMessage);
-	signoutSmtBtn.style.visibility='hidden';
-	loginSmtBtn.style.visibility='visible';
+	logstate = false;
   })
-},false);
+}
 
 //登出
-var signoutSmtBtn = document.getElementById("signoutSmtBtn");
-signoutSmtBtn.addEventListener("click",function(){
-	var loginSmtBtn = document.getElementById("loginSmtBtn");
+function userlogout(){
 	firebase.auth().signOut().then(function() {
 		console.log("User sign out!");
-		signoutSmtBtn.style.visibility='hidden';
-		loginSmtBtn.style.visibility='visible';
+		loginSmtBtn.innerHTML="login";
+		logstate = false;
 	}, function(error) {
   	console.log("User sign out error!");
-	signoutSmtBtn.style.visibility='visible';
-	loginSmtBtn.style.visibility='hidden';
+	logstate = true;
 	})
-},false);
+}
+
 
 //查看目前登入狀況
 var user;
@@ -104,7 +110,6 @@ var Info = document.getElementById("Info");
 var InfoText  = [];
 function showStatus(){
     InfoText = [];
-	//資料讀取一次後就不再理會	
 	firebase.database().ref('onoffproject').once('value').then(function(snapshot) {
 	snapshot.forEach(function(childSnapshot) {
       // childData will be the actual contents of the child
