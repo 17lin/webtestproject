@@ -23,12 +23,26 @@
 <body>
 <nav class="navbar navbar-default navbar-static-top" role="navigation">
 	<div class="form-inline">
-	<div style = "float:Left;">
+	<div style = "float:Left;"  class="navbar-brand">
 	<span>Status:</span><span id="Info">Data</span>
 	</div>
-	<div style = "float:Right;">
-		帳號:<input id="accountL" type="text">密碼:<input id="pwdL" type="password"><button type="submit" id="loginSmtBtn" class="btn btn-sm btn-danger">Login</button>
-	</div>
+	<ul class="navbar-nav mr-auto" style = "float:Right;">
+          <li class="nav-item active">
+           帳號:
+          </li>
+          <li class="nav-item">
+           <input id="accountL" type="text">
+          </li>
+		  <li class="nav-item">
+           密碼:
+          </li>
+		  <li class="nav-item">
+           <input id="pwdL" type="password">
+          </li>
+		  <li class="nav-item">
+           <button type="submit" id="loginSmtBtn" class="btn btn-sm btn-danger">Login</button>
+          </li>
+        </ul>
 	</div>
 </nav>
 
