@@ -24,9 +24,6 @@
 <a href =  '#' onclick = 'locknumber(0)'><span id = w1>1</span></a>
 <a href =  '#' onclick = 'locknumber(1)'><span id = w2>2</span></a>
 <a href =  '#' onclick = 'locknumber(2)'><span id = w3>3</span></a>
-<a href =  '#' onclick = 'locknumber(3)'><span id = w4>4</span></a>
-<a href =  '#' onclick = 'locknumber(4)'><span id = w5>5</span></a>
-<a href =  '#' onclick = 'locknumber(5)'><span id = w6>6</span></a>
 </h2>
 <h1 id="Info"></h1>
 </body>
@@ -50,9 +47,11 @@ function loadData(){
 	  });
 	console.log(InfoText[lnum]);
 	if (InfoText[lnum] != 0){
+		if (lnum ==0)Info.innerHTML = "(／・ω・)／ Go Go Go !! (／・ω・)／Go Go Go !! <br>智慧治理Go Go Go !! 智慧治理Go Go Go !! 智慧治理Go Go Go !! <br>(／・ω・)／ Go Go Go !! (／・ω・)／Go Go Go !! ";
+		if (lnum ==1)Info.innerHTML = "(／・ω・)／ Go Go Go !! (／・ω・)／Go Go Go !! <br>智慧健康照護Go Go Go !! 智慧健康照護Go Go Go !! 智慧健康照護Go Go Go !! <br>(／・ω・)／ Go Go Go !! (／・ω・)／Go Go Go !! ";
+		if (lnum ==2)Info.innerHTML = "(／・ω・)／ Go Go Go !! (／・ω・)／Go Go Go !! <br>智慧生活Go Go Go !! 智慧生活Go Go Go !! 智慧生活Go Go Go !! <br>(／・ω・)／ Go Go Go !! (／・ω・)／Go Go Go !! ";
+	}else{		
 		Info.innerHTML = "(*´艸`*) Not Yet ~ (*´艸`*)";
-	}else{
-		Info.innerHTML = "(／・ω・)／ Go Go Go !! (／・ω・)／"
 	}
 	
 	});        
