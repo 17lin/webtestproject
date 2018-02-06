@@ -40,7 +40,7 @@
            <input id="pwdL" type="password" style="list-style-type:none;">
           </li>
 		  <li class="nav-item" style="list-style-type:none;">
-           <button type="submit" id="loginSmtBtn" class="btn btn-sm btn-danger">Login</button>
+           <button type="submit" id="loginSmtBtn" class="btn btn-sm btn-danger">登入</button>
           </li>
         </ul>
 	</div>
@@ -48,9 +48,9 @@
 
 <div class="container" width="100%">
 	<div class="row" style="text-align: center;">
-		<div class="row" width="100%"><button id="ChangeInfoCase1Btn" class="btn btn-success btn-lg btn-block">智慧治理</button></div>
-		<div class="row" width="100%"><button id="ChangeInfoCase2Btn" class="btn btn-success btn-lg btn-block">智慧健康照護</button></div>
-		<div class="row" width="100%"><button id="ChangeInfoCase3Btn" class="btn btn-success btn-lg btn-block">智慧生活</button></div>
+		<div class="row" width="100%"><button id="ChangeInfoCase1Btn" class="btn btn-success btn-lg btn-block" style="height:60px;">智慧治理</button></div>
+		<div class="row" width="100%"><button id="ChangeInfoCase2Btn" class="btn btn-success btn-lg btn-block" style="height:60px;">智慧健康照護</button></div>
+		<div class="row" width="100%"><button id="ChangeInfoCase3Btn" class="btn btn-success btn-lg btn-block" style="height:60px;">智慧生活</button></div>
 	</div>
 	<footer class="row" style="text-align: center;">
 		<p>網站原始碼 by 資通科十七  <small>(MIT授權)</small></p>
@@ -76,7 +76,7 @@ loginSmtBtn.addEventListener("click",function(){
 
 function userlogin(){
 	console.log(accountL.value);
-	loginSmtBtn.innerHTML="logout";
+	loginSmtBtn.innerHTML="登出";
 	logstate = true;
 	firebase.auth().signInWithEmailAndPassword(accountL.value, pwdL.value).catch(function(error) {
   	// Handle Errors here.
@@ -91,7 +91,7 @@ function userlogin(){
 function userlogout(){
 	firebase.auth().signOut().then(function() {
 		console.log("User sign out!");
-		loginSmtBtn.innerHTML="login";
+		loginSmtBtn.innerHTML="登入";
 		logstate = false;
 	}, function(error) {
   	console.log("User sign out error!");
