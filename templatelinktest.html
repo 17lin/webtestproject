@@ -36,17 +36,36 @@
 				<div class="section">
 						<iframe width=100% height=80% class="embed-responsive-item" src="https://embed.windy.com/embed2.html?lat=23.499&lon=120.488&zoom=10&level=surface&overlay=wind&menu=&message=&marker=&forecast=12&calendar=now&location=coordinates&type=map&actualGrid=&metricWind=kt&metricTemp=%C2%B0C" frameborder="0"></iframe>
 				</div>
-				<div class="section"><h1>還沒做</h1></div>
+				<div class="section">
+					<img id="radar" src = "" class="img-fluid rounded border border-secondary" alt="Responsive image" width=80% height=80% >			
+				</div>
 			</div>
 	</div>
-	<div id = "copyright" style="text-align: center;"></div>
+	<div id = "copyright" style="text-align: center;">網站原始碼 by 資訊科十七</div>
 	<script type="text/javascript">
 		$( "#example" ).fullpage({
 			navigation: true, // 顯示導行列
 			navigationPosition: "right" // 導行列位置
 		});
-		var copyright = '網站原始碼 by 資訊科十七 ';
-		document.getElementById("copyright").innerHTML = copyright;
+		var dt = new Date();
+		var minutes = dt.getMinutes();
+		dt.setMinutes(minutes -20);
+		var dtString = "https://www.cwb.gov.tw/V7/observe/radar/Data/HD_Radar/CV1_TW_3600_";
+		dtString = dtString + dt.getFullYear().toString();
+		if (dt.getMonth()+1 < 10) dtString = dtString + "0"+(dt.getMonth()+1).toString() ;
+		else dtString = dtString + (dt.getMonth()+1).toString() ;
+		dtString = dtString + dt.getDate().toString() ;
+		dtString = dtString + dt.getHours();		
+		if (dt.getMinutes() >=0 && dt.getMinutes() <10) dtString = dtString + "00";
+		else if (dt.getMinutes() >=10 && dt.getMinutes() <20) dtString = dtString + "10";
+		else if (dt.getMinutes() >=20 && dt.getMinutes() <30) dtString = dtString + "20";
+		else if (dt.getMinutes() >=30 && dt.getMinutes() <40) dtString = dtString + "30";
+		else if (dt.getMinutes() >=40 && dt.getMinutes() <50) dtString = dtString + "40";
+		else dtString = dtString + "50";
+		dtString = dtString + ".png";
+		document.getElementById("radar").src = dtString;
+		document.getElementById("radar").width = window.screen.width*0.4;
+		document.getElementById("radar").height = window.screen.height*0.4;
 	</script>
 </body>
 </html>
