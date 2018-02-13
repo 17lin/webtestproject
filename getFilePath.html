@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html"charset="UTF-8"/>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta property="og:title" content="getFilePath">
+		<meta property="og:description" content="getFilePath">
+		<meta property="og:type" content="website">
+		<title>getFilePath</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>		
+	</head>
+	<body class="text-white bg-dark">
+		<ul class="nav">
+			<li class="nav-item"><a class="nav-link active" href="#">Active</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
+		</ul>
+		<div class="container-fluid" style="text-align: center;" id =  "picplace"></div>
+		<div id = "copyright" style="text-align: center;">網站原始碼 by 資訊科十七</div>
+		<script>
+		function getDir(type){
+			var locHref = location.href;      //取得完整路徑，包含檔案名稱
+			var locArr = locHref.split("/");  //用"/"切分，並存至locArr陣列
+			if (type == "file"){
+				return locArr[locArr.length - 1];
+			}else if (type == "dir"){
+				delete locArr[locArr.length - 1];//刪除locArr陣列的最後一個元素，即檔案名稱
+				return locArr.join("/");      //用"/"毀locArr陣列中的元素合併，傳回字串值
+			}		
+		}
+		var dir = getDir("dir");
+		var tmp = dir + "switch/管道間機箱照片/"
+		var htmlstr = "";
+		for ( i = 1;i<=7;i++){
+			if (i == 4 || i == 5) continue;
+			htmlstr = htmlstr + '<h4>' + i + '樓</h4>';
+			htmlstr = htmlstr + '<div><div><img src = "'+tmp+i+'FN.jpg" class="img-fluid rounded border border-secondary" alt="Responsive image" width = 800px height = 600px></div><div id = "desc'+i+'">some words</div></div>';
+			htmlstr = htmlstr + '<div><div><img src = "'+tmp+i+'FS.jpg" class="img-fluid rounded border border-secondary" alt="Responsive image" width = 800px height = 600px></div><div id = "desc'+i+'">some words</div></div>';
+			if (i == 2)htmlstr = htmlstr + '<div><div><img src = "'+tmp+i+'FS2.jpg" class="img-fluid rounded border border-secondary" alt="Responsive image" width = 800px height = 600px></div><div id = "desc'+i+'">some words</div></div>';
+		}
+		document.getElementById("picplace").innerHTML = htmlstr;
+	</script>
+	</body>
+</html>
+
+
+
+
