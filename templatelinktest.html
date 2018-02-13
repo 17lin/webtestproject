@@ -57,9 +57,9 @@
 		dtString = dtString + dt.getFullYear().toString();
 		if (dt.getMonth()+1 < 10) dtString = dtString + "0"+(dt.getMonth()+1).toString() ;
 		else dtString = dtString + (dt.getMonth()+1).toString() ;
-		if (dt.getDate()+1 < 10) dtString = dtString + "0" + dt.getDate().toString() ;
+		if (dt.getDate() < 10) dtString = dtString + "0" + dt.getDate().toString() ;
 		else dtString = dtString + dt.getDate().toString() ;		
-		if (dt.getHours()+1 < 10) dtString = dtString + "0"+dt.getHours().toString() ;
+		if (dt.getHours() < 10) dtString = dtString + "0"+dt.getHours().toString() ;
 		else dtString = dtString + dt.getHours();
 		if (dt.getMinutes() >=0 && dt.getMinutes() <10) dtString = dtString + "00";
 		else if (dt.getMinutes() >=10 && dt.getMinutes() <20) dtString = dtString + "10";
