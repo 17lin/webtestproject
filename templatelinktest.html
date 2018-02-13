@@ -10,8 +10,6 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<!-- jQuery.js v1.11.1 -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	<!-- This following line is optional. Only necessary if you use the option css3:false and you want to use other easing effects rather than "linear", "swing" or "easeInOutCubic". -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/vendors/jquery.easings.min.jss"></script>
 	<!-- This following line is only necessary in the case of using the option `scrollOverflow:true` -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.5/vendors/scrolloverflow.min.js"></script>
 	<!-- fullPage.js v2.9.5 -->
@@ -69,8 +67,11 @@
 		else dtString = dtString + "50";
 		dtString = dtString + ".png";
 		document.getElementById("radar").src = dtString;
-		document.getElementById("radar").width = window.screen.width*0.5;
-		document.getElementById("radar").height = window.screen.height*0.5;
+		var wsw = window.screen.width;
+		var wsh = window.screen.height;
+		var conf = (wsw >= wsh)?wsh:wsw;
+		document.getElementById("radar").width = conf*0.5;
+		document.getElementById("radar").height = conf*0.5;
 	</script>
 </body>
 </html>
