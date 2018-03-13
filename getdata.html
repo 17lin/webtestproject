@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+<script src="https://code.jquery.com/jquery-1.9.1.js"></script>
+</head>
+<body>
+  <select id="select"></select>
+  <button id="btn">查詢</button>
+  <div id="content"></div>
+  <script>
+	var $content = $('#content');
+	var $select = $('#select');
+	var $btn = $('#btn');
+	var county = [];
+	var result;
+	$.get('http://opendata2.epa.gov.tw/AQX.json',function(data){
+		console.log(data);
+		data.forEach(function(e,i){
+			county[i] = e.County;
+		});
+		result=county.filter(function(element, index, arr){
+			return arr.indexOf(element)=== index;
+		});
+		//篩選出縣市名稱(不然會很多重複)
+		result.forEach(function(e){
+		$select.append('<option value="'+e+'">'+e+'</option>');
+	}); 
+
+	$btn.on('click',function(){
+		var s = $select.val();
+		$content.html(''); //清空內容
+		data.forEach(function(e,i){
+			//挑選對應的縣市顯示
+			if(e.County == s){
+				$content.append('< '+e.SiteName+' > PM2.5:'+e['PM2.5']+' , PM10: '+e.PM10+'<br/>');
+			}
+		});
+	});
+});
+  </script>
+</body>
+</html>
