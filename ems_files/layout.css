@@ -6,7 +6,7 @@ body{
 	-webkit-background-size: cover;
 	-mz-background-size: cover;
 	-moz-background-size: cover;
-	background: #f3ece2 url(../images/bg.jpg) top center no-repeat; 
+	background: #f3ece2 url(../ems_files/bg.jpg) top center no-repeat; 
 }
 
 .login{
@@ -58,7 +58,7 @@ ul li{font-family:"微軟正黑體"; font-size: 1.2em; margin:0 8%;}
 }
 
 @media (min-width: 768px){
-	.login{width: 750px; background:url(../images/login_m.png) center top no-repeat;}
+	.login{width: 750px; background:url(../ems_files/login_m.png) center top no-repeat;}
 	.area{margin-left:30px; margin-top:13%;}
 	ul li{margin:0 6%;}
 	.ssl{margin-left:33px;}
