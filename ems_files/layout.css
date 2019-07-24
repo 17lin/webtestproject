@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 
 body{
@@ -65,7 +65,7 @@ ul li{font-family:"微軟正黑體"; font-size: 1.2em; margin:0 8%;}
 }
 
 @media (min-width: 992px){
-	.login{width: 980px; background:url(../images/login.png) center top no-repeat; margin: 100px auto 0 auto;}
+	.login{width: 980px; background:url(../ems_files/login.png) center top no-repeat; margin: 100px auto 0 auto;}
 	.area{margin-top:8%; margin-left:5%;}
 	.i_id{margin-left: 2%;/*-語系間格調整*/ width: 263px; height: 32px; line-height:32px; padding: 1%;}
 	.d_icon01{width:320px;}
