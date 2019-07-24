@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0014)about:internet -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>嘉義市政府 電子郵件</title>
+<link href="./ems_files/layout.css" rel="stylesheet" type="text/css">
+<link href="./ems_files/reset.css" rel="stylesheet" type="text/css">
+<link href="./ems_files/bootstrap3.3.css" rel="stylesheet" type="text/css">
+
+<script type="text/JavaScript">
+function keyDown(e){
+	thisform=document.indexForm;
+	var keyCode=e.keyCode;
+	if (keyCode == 13) {
+	 	login();
+	}
+}
+function login(){
+	  thisform=document.indexForm;
+	 	x=check()
+	 	if(x==0){
+	    	document.getElementById("note").innerHTML="<div style='color:red;'><p>請同仁注意，本府資訊人員不會利用寄信請您修改密碼</p><p>請勿點擊不明來信，更不要點擊不明連結</p><p>資通建設科敬上</p></div>";
+	 	}
+}
+
+function check(){
+  thisform=document.indexForm;
+  if(thisform.userName.value.length==0){
+   	alert("請輸入您的帳號");
+   	thisform.userName.focus();
+   	return 1
+  } 
+  if(thisform.password.value.length==0){
+   	alert("請輸入您的密碼");
+   	thisform.password.focus();
+   	return 1
+  } 
+  return 0
+}
+function focusUserName(){
+	thisform.userName.focus();
+}
+
+</script>
+</head>
+
+<body onload="focusUserName()">
+<form name="indexForm" method="post" action="https://ems.chiayi.gov.tw/webmailLogin.do">
+<input type="hidden" name="locale" value="">
+<div class="container">
+	<div class="login">
+	    <div class="row">
+	        <div class="col-md-5 col-sm-6 col-xs-12 area">
+	        	<div class="title">
+	        		<img src="./ems_files/title.png">
+	        	</div>
+	        	<ul class="form">
+	        		<li>帳號：<input type="text" name="userName" class="i_id" tabindex="1" onkeydown="keyDown(event)">
+	        		<p>@ems.chiayi.gov.tw</p></li>
+	        		<li>密碼：<input type="password" name="password" class="i_id" tabindex="2" onkeydown="keyDown(event)"></li>
+	        		<li><input name="Submit2" type="button" class="d_icon01" value="登入" tabindex="3" onclick="login()"></li>
+	        	</ul>
+	        	
+	        </div>
+	    </div>
+    </div>
+</div>
+</form>
+<script>
+	thisform=document.indexForm;
+</script>
+
+
+</body></html>
